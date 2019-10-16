@@ -117,7 +117,6 @@ var columnData = [
     }
 ];
 
-
 var importRules = {
     'condition': 'and',
     'rules': [{
