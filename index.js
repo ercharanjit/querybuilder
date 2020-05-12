@@ -136,12 +136,11 @@ var importRules = {
 var qryBldrObj = new ej.querybuilder.QueryBuilder({
     width: '70%',
     columns: columnData,
-    summaryView: "true",
-      rule: importRules,
-      change:function(args){
-              console.log(args);                          
+    rule: importRules,
+    change:function(args){
+            console.log(args);                          
 
-      },
+    },
 });
 
 qryBldrObj.appendTo('#querybuilder');
