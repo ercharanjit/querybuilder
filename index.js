@@ -132,15 +132,59 @@ var importRules = {
         'value': [1,2]
     }]
 };
+enableFilterForQueryBuilder = function () {
+    $(".e-filter-input").each(function () {
+        if ($(this)[0].ej2_instances != null) {
+            $(this)[0].ej2_instances[0].allowFiltering = true;
+        }
+    });  
+};
+
+disableQueryBuilder=function(){
+  $(".e-filter-input").each(function () {
+    $(this)[0].ej2_instances[0].enabled = false;
+  });
+  $(".e-rule-operator input").each(function () {
+    $(this)[0].ej2_instances[0].enabled = false;
+  });
+  
+
+  $(".e-btn-group input").each(function () {
+    $(this)[0].disabled = true;
+  });
+
+  $(".e-add-btn").each(function () {
+    if ($(this)[0].ej2_instances != null) {
+        $(this)[0].ej2_instances[0].disabled = true;
+    }
+  });
+  
+  $(".e-rule-value input.e-control").not(".e-template").each(function () {
+    if ($(this)[0].ej2_instances !== null) {
+        if ($(this)[0].ej2_instances[0] !== null) {
+            $(this)[0].ej2_instances[0].enabled = false;
+        }
+    }
+    else {
+        $(this)[0].disabled = true;
+    }
+  });
+}
 
 var qryBldrObj = new ej.querybuilder.QueryBuilder({
     width: '70%',
     columns: columnData,
     rule: importRules,
     change:function(args){
-            console.log(args);                          
-
+      enableFilterForQueryBuilder();
     },
 });
 
 qryBldrObj.appendTo('#querybuilder');
+
+
+$(document).ready(function() {
+    $("#dis").click(function() {
+       disableQueryBuilder();
+    });
+});
